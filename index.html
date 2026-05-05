@@ -1,223 +1,393 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next-Level UI/UX</title>
+    <title>Rohan Thakur | BTech Portfolio</title>
     <style>
         :root {
-            --primary: #6366f1;
-            --secondary: #ec4899;
-            --bg-color: #0f172a;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --bg-dark: #050505;
+            --accent-1: #00f0ff;
+            --accent-2: #ff003c;
+            --text-main: #ffffff;
+            --text-muted: #888888;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            cursor: none; /* Custom cursor */
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-dark);
             color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            perspective: 1000px;
+            overflow-x: hidden;
         }
 
-        /* Animated Background Orbs */
-        .orb {
-            position: absolute;
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
             border-radius: 50%;
-            filter: blur(80px);
-            z-index: 0;
-            animation: float 10s infinite ease-in-out alternate;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-1);
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(0, 240, 255, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
         }
 
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: rgba(99, 102, 241, 0.4);
-            top: -10%;
-            left: -10%;
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 5, 0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .orb-2 {
-            width: 350px;
-            height: 350px;
-            background: rgba(236, 72, 153, 0.4);
-            bottom: -10%;
-            right: -10%;
-            animation-delay: -5s;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 50px) scale(1.2); }
-        }
-
-        /* Glassmorphism Card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 3rem;
-            width: 90%;
-            max-width: 500px;
-            z-index: 10;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Inner Content */
-        .content {
-            transform: translateZ(50px); /* Pushes content out for 3D effect */
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
+        .logo {
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            background: linear-gradient(to right, #fff, #cbd5e1);
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        /* Interactive Button */
-        .cta-button {
-            background: transparent;
+        .nav-links a {
             color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-1);
+            text-shadow: 0 0 10px var(--accent-1);
+        }
+
+        /* Layout & Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        #home {
             position: relative;
-            overflow: hidden;
-            width: 100%;
         }
 
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
         }
 
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
+        .glitch-text {
+            position: relative;
+            display: inline-block;
         }
         
-        /* Dynamic Light Tracking */
-        .light {
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text);
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--accent-2);
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--accent-1);
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip-path: inset(20% 0 80% 0); }
+            20% { clip-path: inset(60% 0 10% 0); }
+            40% { clip-path: inset(40% 0 50% 0); }
+            60% { clip-path: inset(80% 0 5% 0); }
+            80% { clip-path: inset(10% 0 70% 0); }
+            100% { clip-path: inset(30% 0 20% 0); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .typewriter {
+            color: var(--accent-1);
+            border-right: 2px solid var(--accent-1);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blink 0.75s step-end infinite;
+        }
+
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        /* Background Grid */
+        .grid-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            perspective: 1000px;
+            transform: rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: rotateX(60deg) translateY(0) translateZ(-200px); }
+            100% { transform: rotateX(60deg) translateY(50px) translateZ(-200px); }
+        }
+
+        /* Glass Cards (Projects/Skills) */
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-1));
+            transition: left 0.5s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.1);
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-1);
+        }
+
+        /* Scroll Reveal Utility */
+        .reveal {
             opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
     </style>
 </head>
 <body>
 
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
 
-    <div class="glass-card" id="card">
-        <div class="light" id="light"></div>
-        <div class="content">
-            <div class="badge">System Online</div>
-            <h1>Welcome, Rohan.</h1>
-            <p>This UI utilizes dynamic 3D spatial tracking, hardware-accelerated CSS rendering, and deep glassmorphism to create a fluid, modern user experience.</p>
-            <button class="cta-button">Initialize Sequence</button>
+    <nav>
+        <div class="logo">RT.</div>
+        <div class="nav-links">
+            <a href="#home" class="hover-target">Home</a>
+            <a href="#about" class="hover-target">About</a>
+            <a href="#projects" class="hover-target">Projects</a>
         </div>
-    </div>
+    </nav>
+
+    <section id="home">
+        <div class="grid-bg"></div>
+        <div>
+            <h1 class="hero-title">
+                Hi, I'm <br>
+                <span class="glitch-text" data-text="Rohan Thakur.">Rohan Thakur.</span>
+            </h1>
+            <div class="subtitle">
+                <span>I build stuff using</span>
+                <span class="typewriter" id="typewriter"></span>
+            </div>
+            <a href="#projects" class="hover-target" style="display: inline-block; margin-top: 2rem; padding: 1rem 2rem; background: transparent; border: 1px solid var(--accent-1); color: var(--accent-1); text-decoration: none; border-radius: 4px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s;">View My Work</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title reveal">My Arsenal</h2>
+        <div class="grid-container">
+            <div class="glass-card reveal hover-target">
+                <h3>Frontend Architecture</h3>
+                <p style="color: var(--text-muted); line-height: 1.6;">Crafting responsive, physics-based, and highly interactive user interfaces using modern web technologies and frameworks.</p>
+            </div>
+            <div class="glass-card reveal hover-target" style="transition-delay: 0.1s;">
+                <h3>Backend Systems</h3>
+                <p style="color: var(--text-muted); line-height: 1.6;">Building robust APIs and database architectures to power data-intensive applications seamlessly.</p>
+            </div>
+            <div class="glass-card reveal hover-target" style="transition-delay: 0.2s;">
+                <h3>Hardware & Performance</h3>
+                <p style="color: var(--text-muted); line-height: 1.6;">Deep understanding of system limits, optimizing render cycles, and squeezing every drop of performance out of modern specs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title reveal">Featured Builds</h2>
+        <div class="grid-container">
+            <div class="glass-card reveal hover-target">
+                <h3>Project Alpha</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">A full-stack application demonstrating real-time data synchronization and complex state management.</p>
+                <span style="font-size: 0.8rem; color: var(--accent-2); border: 1px solid var(--accent-2); padding: 3px 8px; border-radius: 20px;">React Node.js</span>
+            </div>
+            <div class="glass-card reveal hover-target" style="transition-delay: 0.1s;">
+                <h3>System Override UI</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">Experimental user interface utilizing WebGL and custom shaders for a futuristic data-dashboard.</p>
+                <span style="font-size: 0.8rem; color: var(--accent-2); border: 1px solid var(--accent-2); padding: 3px 8px; border-radius: 20px;">Vanilla JS CSS3</span>
+            </div>
+        </div>
+    </section>
 
     <script>
-        const card = document.getElementById('card');
-        const light = document.getElementById('light');
+        // Custom Cursor Logic
+        const dot = document.getElementById('cursor-dot');
+        const outline = document.getElementById('cursor-outline');
+        const hoverTargets = document.querySelectorAll('.hover-target');
 
-        // 3D Tilt Effect and Dynamic Lighting
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x position within the element.
-            const y = e.clientY - rect.top;  // y position within the element.
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
 
-            // Calculate rotation (max 15 degrees)
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = ((y - centerY) / centerY) * -10; 
-            const rotateY = ((x - centerX) / centerX) * 10;
-
-            // Apply 3D rotation
-            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-
-            // Move the dynamic light
-            light.style.opacity = '1';
-            light.style.left = `${x - 150}px`; // 150 is half the width of the light
-            light.style.top = `${y - 150}px`;
+            dot.style.left = `${posX}px`;
+            dot.style.top = `${posY}px`;
+            
+            // Add a slight delay to the outline for a smooth trailing effect
+            outline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
         });
 
-        // Reset on mouse leave
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = `rotateX(0deg) rotateY(0deg)`;
-            card.style.transition = `transform 0.5s ease-out`;
-            light.style.opacity = '0';
+        // Expand cursor on hover elements
+        hoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => {
+                outline.style.width = '60px';
+                outline.style.height = '60px';
+                outline.style.backgroundColor = 'rgba(0, 240, 255, 0.1)';
+            });
+            target.addEventListener('mouseleave', () => {
+                outline.style.width = '40px';
+                outline.style.height = '40px';
+                outline.style.backgroundColor = 'transparent';
+            });
         });
 
-        // Remove transition during hover for instant tracking
-        card.addEventListener('mouseenter', () => {
-            card.style.transition = `none`;
-        });
+        // Typewriter Effect
+        const words = ["Code.", "Coffee.", "Raw Logic.", "Next-Gen UI."];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typeTarget = document.getElementById('typewriter');
+
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if(isDeleting) {
+                typeTarget.innerText = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typeTarget.innerText = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if(!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2000; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500; // Pause before next word
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+        setTimeout(type, 1000); // Start typing effect
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger once on load
     </script>
 </body>
 </html>
