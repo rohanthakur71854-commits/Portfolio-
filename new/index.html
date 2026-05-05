@@ -2,122 +2,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rohan Thakur | Next Level UI</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Rohan Thakur | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{
-  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  color:#fff;
-  overflow-x:hidden;
+  background:#0f172a;
+  color:#e2e8f0;
 }
 header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 50px;
+  padding:20px 10%;
+  position:sticky;
+  top:0;
+  background:rgba(15,23,42,0.8);
   backdrop-filter:blur(10px);
 }
-.logo{
-  font-size:24px;
-  font-weight:600;
-}
+.logo{font-size:22px;font-weight:700}
 nav a{
   margin-left:20px;
   text-decoration:none;
-  color:#fff;
+  color:#cbd5f5;
   transition:0.3s;
 }
-nav a:hover{
-  color:#00f2fe;
-}
+nav a:hover{color:#38bdf8}
+section{padding:80px 10%}
 .hero{
-  height:90vh;
   display:flex;
-  align-items:center;
+  flex-direction:column;
   justify-content:center;
-  text-align:center;
+  height:90vh;
 }
 .hero h1{
-  font-size:50px;
-  background:linear-gradient(90deg,#00f2fe,#4facfe);
-  -webkit-background-clip:text;
-  color:transparent;
+  font-size:48px;
+  font-weight:700;
 }
+.hero span{color:#38bdf8}
 .hero p{
   margin-top:15px;
-  font-size:18px;
+  max-width:500px;
   opacity:0.8;
 }
 .btn{
   margin-top:20px;
   padding:12px 25px;
   border:none;
-  border-radius:30px;
-  background:linear-gradient(90deg,#00f2fe,#4facfe);
-  color:#000;
-  font-weight:bold;
+  border-radius:8px;
+  background:#38bdf8;
+  color:#0f172a;
+  font-weight:600;
   cursor:pointer;
-  transition:0.3s;
-}
-.btn:hover{
-  transform:scale(1.1);
 }
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
-  padding:50px;
 }
 .card{
-  background:rgba(255,255,255,0.1);
-  border-radius:20px;
+  background:#1e293b;
   padding:20px;
-  backdrop-filter:blur(10px);
+  border-radius:12px;
   transition:0.3s;
 }
-.card:hover{
-  transform:translateY(-10px);
+.card:hover{transform:translateY(-8px)}
+.skills span{
+  display:inline-block;
+  margin:5px;
+  padding:8px 12px;
+  background:#334155;
+  border-radius:6px;
 }
 footer{
   text-align:center;
   padding:20px;
-  opacity:0.7;
+  opacity:0.6;
 }
 </style>
 </head>
 <body>
 <header>
-  <div class="logo">Rohan UI</div>
+  <div class="logo">Rohan.</div>
   <nav>
-    <a href="#">Home</a>
-    <a href="#">Projects</a>
-    <a href="#">Contact</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
   </nav>
-</header>
-<section class="hero">
-  <div>
-    <h1>Welcome Rohan Thakur</h1>
-    <p>Next Level UI/UX Experience</p>
-    <button class="btn">Explore</button>
+</header><section class="hero">
+  <h1>Hi, I'm <span>Rohan Thakur</span></h1>
+  <p>BTech student passionate about coding, technology and building cool projects.</p>
+  <button class="btn">Download Resume</button>
+</section><section id="about">
+  <h2>About Me</h2>
+  <p>I am a BTech student who loves creating websites, solving problems and exploring new technologies. I aim to become a skilled developer and build impactful digital products.</p>
+</section><section id="projects">
+  <h2>Projects</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Medical Report Analyzer</h3>
+      <p>A web app that reads medical reports and explains results.</p>
+    </div>
+    <div class="card">
+      <h3>Python Mini Projects</h3>
+      <p>Collection of useful Python scripts for learning and automation.</p>
+    </div>
+    <div class="card">
+      <h3>Gaming Tools</h3>
+      <p>Tools and tweaks related to GTA Online gameplay.</p>
+    </div>
   </div>
-</section>
-<section class="cards">
-  <div class="card">
-    <h2>🔥 Modern Design</h2>
-    <p>Clean, futuristic glassmorphism UI.</p>
+</section><section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>JavaScript</span>
+    <span>Python</span>
+    <span>Problem Solving</span>
   </div>
-  <div class="card">
-    <h2>⚡ Fast Performance</h2>
-    <p>Optimized for speed and smooth UX.</p>
-  </div>
-  <div class="card">
-    <h2>🎯 Responsive</h2>
-    <p>Works perfectly on all devices.</p>
-  </div>
-</section>
-<footer>
-  © 2026 Rohan Thakur | Built with ❤️
+</section><section id="contact">
+  <h2>Contact</h2>
+  <p>Email: yourmail@example.com</p>
+  <p>LinkedIn: yourprofile</p>
+</section><footer>
+  © 2026 Rohan Thakur | Portfolio
 </footer>
 </body>
 </html>
